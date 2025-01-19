@@ -5,6 +5,7 @@ export interface ChartData {
   
   export interface RevenueData extends ChartData {
     expenses: number;
+    dateRange: string;
   }
   
   export interface SalesData {

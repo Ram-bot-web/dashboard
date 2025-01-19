@@ -52,7 +52,7 @@
 }
 
 .widget-drag-over {
-  @apply border-2 border-dashed border-primary-500 bg-primary-50 dark:bg-primary-900/20;
+  @apply border-2 border-dashed border-primary-500 bg-primary-50 dark:bg-primary-900 dark:bg-opacity-20;
 }
 
 /* Chart tooltips */

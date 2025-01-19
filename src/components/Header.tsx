@@ -7,17 +7,50 @@ interface HeaderProps {
 }
 
 const Header = ({ onMenuClick }: HeaderProps) => {
-  const { isDarkMode, toggleDarkMode } = useTheme();
+  const { isDarkMode, toggleDarkMode, colors } = useTheme();
   const [isProfileOpen, setIsProfileOpen] = useState(false);
 
+  const headerStyle = {
+    backgroundColor: isDarkMode ? '#1f2937' : colors.dashboard,
+    boxShadow: isDarkMode 
+      ? '0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1)'
+      : '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+    color: colors.text
+  };
+
+  const buttonStyle = {
+    color: colors.text,
+    ':hover': {
+      backgroundColor: `${colors.primary}10`,
+      color: colors.primary
+    }
+  };
+
+  const dropdownStyle = {
+    backgroundColor: isDarkMode ? '#1f2937' : colors.dashboard,
+    boxShadow: isDarkMode 
+      ? '0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1)'
+      : '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+    borderRadius: '10px'
+  };
+
+  const dropdownItemStyle = {
+    color: colors.text,
+    ':hover': {
+      backgroundColor: `${colors.primary}10`,
+      color: colors.primary
+    }
+  };
+
   return (
-    <header className="bg-white dark:bg-gray-800 shadow-sm">
+    <header className="shadow-sm" style={headerStyle}>
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
             <button
               onClick={onMenuClick}
-              className="p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700"
+              className="p-2 rounded-md transition-colors hover:bg-opacity-10"
+              style={buttonStyle}
             >
               <Menu className="h-6 w-6" />
             </button>
@@ -26,43 +59,51 @@ const Header = ({ onMenuClick }: HeaderProps) => {
           <div className="flex items-center gap-4">
             <button
               onClick={toggleDarkMode}
-              className="p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700"
+              className="p-2 rounded-md transition-colors hover:bg-opacity-10"
+              style={buttonStyle}
             >
-              {isDarkMode ? <Sun className="h-6 w-6" /> : <Moon className="h-6 w-6" />}
+              {isDarkMode ? (
+                <Sun className="h-6 w-6" style={{ color: colors.primary }} />
+              ) : (
+                <Moon className="h-6 w-6" style={{ color: colors.primary }} />
+              )}
             </button>
 
-            <button className="p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700">
-              <Bell className="h-6 w-6" />
+            <button 
+              className="p-2 rounded-md transition-colors hover:bg-opacity-10"
+              style={buttonStyle}
+            >
+              <Bell className="h-6 w-6" style={{ color: colors.primary }} />
             </button>
 
             <div className="relative">
               <button
                 onClick={() => setIsProfileOpen(!isProfileOpen)}
-                className="p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700"
+                className="p-2 rounded-md transition-colors hover:bg-opacity-10"
+                style={buttonStyle}
               >
-                <User className="h-6 w-6" />
+                <User className="h-6 w-6" style={{ color: colors.primary }} />
               </button>
 
               {isProfileOpen && (
-                <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white dark:bg-gray-700 ring-1 ring-black ring-opacity-5">
-                  <a
-                    href="#profile"
-                    className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600"
-                  >
-                    Your Profile
-                  </a>
-                  <a
-                    href="#settings"
-                    className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600"
-                  >
-                    Settings
-                  </a>
-                  <a
-                    href="#signout"
-                    className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600"
-                  >
-                    Sign out
-                  </a>
+                <div 
+                  className="absolute right-0 mt-2 w-48 py-1 z-50"
+                  style={dropdownStyle}
+                >
+                  {[
+                    { href: '#profile', label: 'Your Profile' },
+                    { href: '#settings', label: 'Settings' },
+                    { href: '#signout', label: 'Sign out' }
+                  ].map((item) => (
+                    <a
+                      key={item.href}
+                      href={item.href}
+                      className="block px-4 py-2 text-sm transition-colors hover:bg-opacity-10"
+                      style={dropdownItemStyle}
+                    >
+                      {item.label}
+                    </a>
+                  ))}
                 </div>
               )}
             </div>

@@ -9,17 +9,40 @@ export default {
     extend: {
       colors: {
         primary: {
-          50: '#f0f9ff',
-          100: '#e0f2fe',
-          200: '#bae6fd',
-          300: '#7dd3fc',
-          400: '#38bdf8',
-          500: '#0ea5e9',
-          600: '#0284c7',
-          700: '#0369a1',
-          800: '#075985',
-          900: '#0c4a6e',
+          50: 'var(--color-primary-50)',
+          100: 'var(--color-primary-100)',
+          200: 'var(--color-primary-200)',
+          300: 'var(--color-primary-300)',
+          400: 'var(--color-primary-400)',
+          500: 'var(--color-primary-500)',
+          600: 'var(--color-primary-600)',
+          700: 'var(--color-primary-700)',
+          800: 'var(--color-primary-800)',
+          900: 'var(--color-primary-900)',
+          DEFAULT: 'var(--color-primary)',
         },
+        background: {
+          light: '#ffffff',
+          dark: '#1a202c',
+          accent: '#edf2f7',
+          muted: '#2d3748',
+          blue: '#ebf8ff',
+          green: '#f0fff4',
+          yellow: '#fefcbf',
+          red: '#fff5f5',
+        },
+        text: {
+          light: '#2d3748',
+          dark: '#e2e8f0',
+          accent: '#38bdf8',
+          blue: '#2b6cb0',
+          green: '#276749',
+          yellow: '#b7791f',
+          red: '#c53030',
+        },
+      },
+      opacity: {
+        '20': '0.2',
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in',
@@ -37,5 +60,13 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
+  safelist: [
+    {
+      pattern: /bg-primary-\d+\/\d+/,
+      variants: ['dark']
+    }
+  ],
 }
