@@ -16,21 +16,24 @@ const ColorPicker = ({
   colorOptions,
 }: ColorPickerProps) => {
   return (
-    <div className="space-y-4">
-      <h3 className="text-lg font-medium text-gray-900 dark:text-white">
+    <div className="space-y-2 sm:space-y-4">
+      <h3 className="text-base sm:text-lg font-medium text-gray-900 dark:text-white">
         {label}
       </h3>
-      <div className="space-y-3">
+      <div className="space-y-2 sm:space-y-3">
         {Object.entries(colorOptions).map(([name, { shades }]) => (
-          <div key={name} className="flex items-center gap-2">
-            <span className="w-24 text-sm text-gray-600 dark:text-gray-300">
+          <div
+            key={name}
+            className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2"
+          >
+            <span className="text-sm text-gray-600 dark:text-gray-300 min-w-[80px] sm:w-24">
               {name}
             </span>
-            <div className="flex gap-2">
+            <div className="flex flex-wrap gap-1 sm:gap-2">
               {shades.map((color) => (
                 <button
                   key={color}
-                  className={`w-8 h-8 rounded-lg border-2 ${
+                  className={`w-6 h-6 sm:w-8 sm:h-8 rounded-lg border-2 ${
                     value === color
                       ? "border-gray-900 dark:border-white scale-110"
                       : "border-transparent hover:scale-110"
@@ -55,7 +58,6 @@ interface SettingsModalProps {
 
 const SettingsModal = ({ isOpen, onClose }: SettingsModalProps) => {
   const { colors, updateColors, isDarkMode, toggleDarkMode } = useTheme();
-
   const [tempColors, setTempColors] = React.useState(colors);
 
   const primaryColorOptions = {
@@ -312,35 +314,37 @@ const SettingsModal = ({ isOpen, onClose }: SettingsModalProps) => {
         className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm"
         onClick={onClose}
       />
-      <div className="flex min-h-full items-center justify-center p-4">
-        <div className="relative w-full max-w-3xl rounded-lg bg-white dark:bg-gray-800 p-6 shadow-xl">
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+      <div className="flex min-h-full items-center justify-center p-2 sm:p-4">
+        <div className="relative w-full max-w-[95%] sm:max-w-2xl lg:max-w-3xl rounded-lg bg-white dark:bg-gray-800 p-3 sm:p-6 shadow-xl">
+          <div className="flex justify-between items-center mb-4 sm:mb-6">
+            <h2 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white">
               Settings
             </h2>
             <button
               onClick={onClose}
               className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
             >
-              <X className="h-5 w-5" />
+              <X className="h-4 w-4 sm:h-5 sm:w-5" />
             </button>
           </div>
 
-          <div className="space-y-8">
+          <div className="space-y-6 sm:space-y-8 overflow-y-auto max-h-[calc(100vh-200px)] sm:max-h-[calc(100vh-160px)] pr-2">
             {/* Theme Toggle */}
             <div className="flex items-center justify-between">
-              <span className="text-gray-900 dark:text-white font-medium">
+              <span className="text-sm sm:text-base text-gray-900 dark:text-white font-medium">
                 Dark Mode
               </span>
               <button
                 onClick={toggleDarkMode}
-                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 ${
+                className={`relative inline-flex h-5 sm:h-6 w-9 sm:w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 ${
                   isDarkMode ? "bg-primary-600" : "bg-gray-200"
                 }`}
               >
                 <span
-                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                    isDarkMode ? "translate-x-6" : "translate-x-1"
+                  className={`inline-block h-3 sm:h-4 w-3 sm:w-4 transform rounded-full bg-white transition-transform ${
+                    isDarkMode
+                      ? "translate-x-5 sm:translate-x-6"
+                      : "translate-x-1"
                   }`}
                 />
               </button>
@@ -385,18 +389,25 @@ const SettingsModal = ({ isOpen, onClose }: SettingsModalProps) => {
 
             {/* Preview */}
             <div className="space-y-2">
-              <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">
+              <h3 className="text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-400">
                 Preview
               </h3>
               <div
-                className="flex gap-4 p-4 border rounded-lg dark:border-gray-700"
+                className="flex flex-col sm:flex-row gap-2 sm:gap-4 p-3 sm:p-4 border rounded-lg dark:border-gray-700"
                 style={{ backgroundColor: tempColors.background }}
               >
-                <div className="space-y-4" style={{ color: tempColors.text }}>
-                  <h4 className="font-medium">Sample Content</h4>
-                  <p>This is how your text will look.</p>
+                <div
+                  className="space-y-2 sm:space-y-4"
+                  style={{ color: tempColors.text }}
+                >
+                  <h4 className="text-sm sm:text-base font-medium">
+                    Sample Content
+                  </h4>
+                  <p className="text-xs sm:text-sm">
+                    This is how your text will look.
+                  </p>
                   <button
-                    className="btn-primary"
+                    className="px-3 py-1 sm:px-4 sm:py-2 text-sm sm:text-base rounded-md text-white"
                     style={{ backgroundColor: tempColors.primary }}
                   >
                     Primary Button
@@ -406,13 +417,16 @@ const SettingsModal = ({ isOpen, onClose }: SettingsModalProps) => {
             </div>
           </div>
 
-          <div className="mt-8 flex justify-end gap-3">
-            <button onClick={onClose} className="btn-secondary">
+          <div className="mt-4 sm:mt-8 flex justify-end gap-2 sm:gap-3">
+            <button
+              onClick={onClose}
+              className="px-3 py-1 sm:px-4 sm:py-2 text-sm sm:text-base rounded-md border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
+            >
               Cancel
             </button>
             <button
               onClick={handleSave}
-              className="btn-primary"
+              className="px-3 py-1 sm:px-4 sm:py-2 text-sm sm:text-base rounded-md text-white"
               style={{ backgroundColor: tempColors.primary }}
             >
               Save Changes
