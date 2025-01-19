@@ -16,6 +16,10 @@ A responsive analytics dashboard application built using React and Tailwind CSS.
   - Date range selector
   - Dark/Light mode toggle
 
+## Screenshot
+
+![Dashboard Screenshot](./image.png)
+
 ## Live Demo
 [View Live Demo](https://dashboard-puce-tau-66.vercel.app/)
 
