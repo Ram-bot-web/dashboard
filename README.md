@@ -15,6 +15,7 @@ A responsive analytics dashboard application built using React and Tailwind CSS.
 - **Interactive Components**:
   - Date range selector
   - Dark/Light mode toggle
+  - Custom theme editor
 
 ## Screenshot
 
