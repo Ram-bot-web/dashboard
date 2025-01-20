@@ -4,6 +4,7 @@ import { RootState } from '../../redux/store';
 import { useTheme } from '../../context/ThemeContext';
 // import { button } from '@/components/ui/button';
 import { Download } from 'lucide-react';
+import React from 'react';
 
 const RevenueChart = () => {
   const { colors } = useTheme();
@@ -39,6 +40,7 @@ const RevenueChart = () => {
         <button
           onClick={exportToExcel}
           className="flex items-center gap-2"
+          aria-label="Export revenue data to Excel"
           // variant="outline"
         >
           <Download className="w-4 h-4" />
@@ -96,4 +98,4 @@ const RevenueChart = () => {
   );
 };
 
-export default RevenueChart;
+export default React.memo(RevenueChart);

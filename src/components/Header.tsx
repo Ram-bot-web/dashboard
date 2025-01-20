@@ -51,6 +51,7 @@ const Header = ({ onMenuClick }: HeaderProps) => {
               onClick={onMenuClick}
               className="p-2 rounded-md transition-colors hover:bg-opacity-10"
               style={buttonStyle}
+              aria-label="Menu"
             >
               <Menu className="h-6 w-6" />
             </button>
@@ -61,6 +62,7 @@ const Header = ({ onMenuClick }: HeaderProps) => {
               onClick={toggleDarkMode}
               className="p-2 rounded-md transition-colors hover:bg-opacity-10"
               style={buttonStyle}
+              aria-label="Theme mode"
             >
               {isDarkMode ? (
                 <Sun className="h-6 w-6" style={{ color: colors.primary }} />
@@ -72,6 +74,7 @@ const Header = ({ onMenuClick }: HeaderProps) => {
             <button 
               className="p-2 rounded-md transition-colors hover:bg-opacity-10"
               style={buttonStyle}
+              aria-label="Notification"
             >
               <Bell className="h-6 w-6" style={{ color: colors.primary }} />
             </button>
@@ -81,6 +84,7 @@ const Header = ({ onMenuClick }: HeaderProps) => {
                 onClick={() => setIsProfileOpen(!isProfileOpen)}
                 className="p-2 rounded-md transition-colors hover:bg-opacity-10"
                 style={buttonStyle}
+                aria-label="Profile"
               >
                 <User className="h-6 w-6" style={{ color: colors.primary }} />
               </button>

@@ -2,6 +2,7 @@ import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recha
 import { RootState } from '../../redux/store';
 import { useSelector } from 'react-redux';
 import { Download } from 'lucide-react';
+import React from 'react';
 
 const CustomerSegments = () => {
   const data = useSelector((state: RootState) => state.chartData.customerData);
@@ -36,6 +37,7 @@ const CustomerSegments = () => {
         <button
           onClick={exportToExcel}
           className="flex items-center gap-2"
+          aria-label="Export customer segments data to Excel"
         >
           <Download className="w-4 h-4" />
         </button>
@@ -64,4 +66,4 @@ const CustomerSegments = () => {
   );
 };
 
-export default CustomerSegments;
+export default React.memo(CustomerSegments);

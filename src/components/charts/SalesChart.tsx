@@ -2,6 +2,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsive
 import { RootState } from '../../redux/store';
 import { useSelector } from 'react-redux';
 import { Download } from 'lucide-react';
+import React from 'react';
 
 const SalesChart = () => {
   const data = useSelector((state: RootState) => state.chartData.salesData);
@@ -36,6 +37,7 @@ const SalesChart = () => {
         <button
           onClick={exportToExcel}
           className="flex items-center gap-2"
+          aria-label="Export sales data to Excel"
         >
           <Download className="w-4 h-4" />
         </button>
@@ -55,4 +57,4 @@ const SalesChart = () => {
   );
 };
 
-export default SalesChart;
+export default React.memo(SalesChart);

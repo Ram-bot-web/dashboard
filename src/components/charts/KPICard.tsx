@@ -1,6 +1,7 @@
 import { ArrowUpIcon, ArrowDownIcon } from 'lucide-react';
 import { KPIData } from '../../types';
 import { useTheme } from '../../context/ThemeContext';
+import React from 'react';
 
 interface KPICardProps {
   data: KPIData;
@@ -93,4 +94,4 @@ const KPICard = ({ data }: KPICardProps) => {
   );
 };
 
-export default KPICard;
+export default React.memo(KPICard);

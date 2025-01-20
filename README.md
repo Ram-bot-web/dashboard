@@ -56,9 +56,7 @@ Ensure you have the following installed:
 
 4. Start the development server:
    ```bash
-   npm start
-   # or
-   yarn start
+   npm run dev
    ```
 
 5. Open the app in your browser at `http://localhost:3000`.
